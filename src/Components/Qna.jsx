@@ -13,6 +13,7 @@ function Qna({ data }) {
       </h3>
       {data?.Answers.map((ans, index) => (
         <div key={index}>
+          <input type="radio" name="answer" value={ans.answerId} />
           <h5 className={styles["questions-container_answer"]}>
             {ans.answerDescription}
           </h5>
