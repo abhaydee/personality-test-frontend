@@ -14,38 +14,15 @@ export default function NavContainer() {
   };
   return (
     <div className={styles["nav-container"]}>
-      {/* {!isMobile && (
-        <ul className={styles["nav-container__list"]}>
-          {navList.map((data) => (
-            <li key={data.id} className={styles["nav-container__listitem"]}>
-              {data.title}
-            </li>
-          ))}
-        </ul>
-      )} */}
-      {
-        // !isMobile ? (
-        //   <Image
-        //     src={require("../../public/menu.png")}
-        //     className={styles["nav-container__search"]}
-        //     width={30}
-        //     height={30}
-        //     alt="search"
-        //   />
-        // ) :
-        <span
-          style={{ cursor: "pointer", color: "white" }}
-          onClick={handleClick}
-        >
-          <Image
-            src={require("../../public/menu.png")}
-            width={50}
-            height={50}
-            className={styles["nav-container__img"]}
-            alt="nav-image"
-          />
-        </span>
-      }
+      <span style={{ cursor: "pointer", color: "white" }} onClick={handleClick}>
+        <Image
+          src={require("../../public/menu.png")}
+          width={50}
+          height={50}
+          className={styles["nav-container__img"]}
+          alt="nav-image"
+        />
+      </span>
       {toggleModal && (
         <>
           <div
@@ -54,14 +31,6 @@ export default function NavContainer() {
               toggleModal ? styles["sidenav-open"] : styles["sidenav-close"]
             }`}
           >
-            {/* <Image
-              src={Menu}
-              width={50}
-              height={50}
-              className={styles["nav-container__img"]}
-              alt="nav"
-            /> */}
-
             <a className={styles["closebtn"]} onClick={handleClose}>
               &times;
             </a>
