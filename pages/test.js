@@ -3,8 +3,12 @@ import { getQuestionsData } from "../src/utils/utils";
 import Qna from "../src/Components/Qna";
 function test({ questionsData }) {
   return (
-    <div className="page-style">
-      <Qna data={questionsData} />
+    <div style={{ backgroundColor: "rgb(255, 247, 239)" }}>
+      {questionsData.map((data, index) => (
+        <div key={index}>
+          <Qna data={data} />
+        </div>
+      ))}
     </div>
   );
 }

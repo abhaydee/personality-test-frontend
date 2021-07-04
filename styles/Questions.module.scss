@@ -1,8 +1,25 @@
 .questions-container {
-  margin-left: 4rem;
-  margin-right: 4rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   &_qnumber {
-    margin-top: 10rem;
+    padding-top: 10rem;
     font-size: 2rem;
+  }
+  &_border {
+    padding-top: 0.5rem;
+    border-bottom: 2px solid black;
+    width: 2.5rem;
+  }
+  &_question {
+    font-size: 1.125rem;
+    font-weight: 100;
+    padding-top: 1rem;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .questions-container {
+    max-width: 37.5rem;
   }
 }

@@ -4,15 +4,15 @@
   justify-content: center;
   color: rgb(45, 48, 87);
   text-align: center;
-  margin: 2rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
 @media screen and (min-width: 768px) {
   .description-container {
-    margin: 2rem 12rem 2rem 12rem;
+    padding: 2rem 12rem 2rem 12rem;
     font-size: 2rem;
     &_text {
-      margin-top: 2rem;
+      padding-top: 2rem;
       font-size: 1.5rem !important;
     }
     &_button {

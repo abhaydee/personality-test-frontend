@@ -9,11 +9,12 @@
   justify-content: space-between;
   width: 100%;
   padding: 2rem 4rem 0 4rem;
+  background-color: rgb(255, 247, 239);
   &_logo {
     display: inline-flex;
   }
   &_title {
-    margin-left: 1rem !important;
-    margin-top: 0.75rem;
+    padding-left: 1rem !important;
+    padding-top: 0.75rem;
   }
 }
