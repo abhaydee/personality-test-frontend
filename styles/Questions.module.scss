@@ -14,6 +14,7 @@
     font-size: 1.125rem;
     font-weight: 100;
     padding-top: 1rem;
+    padding-bottom: 1rem;
     text-align: left;
   }
   &_answer {
@@ -21,12 +22,22 @@
       margin-top: 1rem;
     }
     margin-bottom: 1rem;
-    margin-left: 2rem;
+    // margin-left: 2rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   .questions-container {
     max-width: 37.5rem;
+
+    &_input {
+      margin-right: 1rem;
+      margin-left: 2rem;
+      margin-top: 0.1rem;
+    }
+    &_inputContainer {
+      margin-top: 0.5rem;
+      display: inline-flex;
+    }
   }
 }

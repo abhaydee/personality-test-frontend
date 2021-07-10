@@ -6,7 +6,7 @@ function test({ questionsData }) {
     <div style={{ backgroundColor: "rgb(255, 247, 239)" }}>
       {questionsData.map((data, index) => (
         <div key={index}>
-          <Qna data={data} />
+          <Qna data={data} questionsData={questionsData} />
         </div>
       ))}
     </div>
