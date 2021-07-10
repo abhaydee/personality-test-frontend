@@ -1,6 +1,7 @@
 import React from "react";
 import { getQuestionsData } from "../src/utils/utils";
 import Qna from "../src/Components/Qna";
+import Footer from "../src/Components/Footer";
 function test({ questionsData }) {
   return (
     <div style={{ backgroundColor: "rgb(255, 247, 239)" }}>
@@ -9,6 +10,7 @@ function test({ questionsData }) {
           <Qna data={data} questionsData={questionsData} />
         </div>
       ))}
+      <Footer />
     </div>
   );
 }
