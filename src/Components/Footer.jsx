@@ -1,16 +1,21 @@
 import React from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import styles from "../../styles/footer.module.scss";
-function Footer() {
+function Footer({ answeredQuestions, questionsLength }) {
   return (
     <div className={styles["footer-container"]}>
-      <h3>/</h3>
-      <ProgressBar
-        completed={60}
-        baseBgColor="linear-gradient(transparent, rgb(255, 247, 239), rgb(255, 247, 239), rgb(255, 247, 239))"
-        bgColor="rgb(132, 201, 183)"
-        className={styles["footer-container_progress"]}
-      />
+      <span className={styles["footer-container_text"]}>
+        <p className={styles["footer-container_answerCount"]}>
+          {answeredQuestions} of {questionsLength}
+        </p>
+        <ProgressBar
+          completed={60}
+          baseBgColor="grey"
+          bgColor="rgb(132, 201, 183)"
+          className={styles["footer-container_progress"]}
+        ></ProgressBar>
+      </span>
+
       <button className={styles["footer-container_button"]}>Submit</button>
     </div>
   );

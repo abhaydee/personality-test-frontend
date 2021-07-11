@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Questions.module.scss";
+import Footer from "./Footer";
 function Qna({ data, questionsData }) {
   const [listValue, setListValue] = useState([]);
   const [eventValue, setEventValue] = useState("");
   const [questionValue, setQuestionValue] = useState(1);
   const [flag, setFlag] = useState(false);
+  const [answered, setAnswered] = useState(0);
   const handleChange = (event) => {
     setQuestionValue(event.target.name);
     setEventValue(event.target.value);
@@ -15,7 +17,9 @@ function Qna({ data, questionsData }) {
         return element;
       }
     }).length;
+    setAnswered(selectedCount);
     console.log("the selected count", selectedCount);
+    console.log("questions value", questionValue);
     questionsData[questionValue - 1].Answers.forEach((item) => {
       if (item.answerId === eventValue && selectedCount === 0) {
         item.selected = true;
@@ -23,14 +27,14 @@ function Qna({ data, questionsData }) {
       }
     });
     if (flag === true) {
-      console.log("the previous list value", listValue);
       setListValue(questionsData);
       setFlag(false);
     }
-    console.log("the data", data);
+    // console.log("the data", data);
     console.log("the list value data", listValue);
     console.log("questions data", questionsData);
-  }, [eventValue, flag, questionValue]);
+    console.log("the flag value ", flag);
+  }, [eventValue, questionValue]);
   return (
     <>
       <div className={styles["questions-container"]}>
@@ -59,6 +63,10 @@ function Qna({ data, questionsData }) {
           </div>
         ))}
       </div>
+      <Footer
+        answeredQuestions={answered}
+        questionsLength={questionsData.length}
+      />
     </>
   );
 }

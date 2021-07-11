@@ -10,7 +10,7 @@ function test({ questionsData }) {
           <Qna data={data} questionsData={questionsData} />
         </div>
       ))}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
