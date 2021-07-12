@@ -6,20 +6,21 @@ function Qna({ data, questionsData }) {
   const [eventValue, setEventValue] = useState("");
   const [questionValue, setQuestionValue] = useState(1);
   const [flag, setFlag] = useState(false);
-  const [answered, setAnswered] = useState(0);
+  const [anscount, setAnswerCount] = useState(0);
   const handleChange = (event) => {
     setQuestionValue(event.target.name);
     setEventValue(event.target.value);
   };
+  console.log("initial data", questionsData);
+  let count = 0;
   useEffect(() => {
     const selectedCount = data.Answers.filter((element) => {
       if (element.selected === true) {
         return element;
       }
     }).length;
-    setAnswered(selectedCount);
     console.log("the selected count", selectedCount);
-    console.log("questions value", questionValue);
+    // console.log("questions value", questionValue);
     questionsData[questionValue - 1].Answers.forEach((item) => {
       if (item.answerId === eventValue && selectedCount === 0) {
         item.selected = true;
@@ -30,11 +31,35 @@ function Qna({ data, questionsData }) {
       setListValue(questionsData);
       setFlag(false);
     }
+    questionsData.forEach((item) => {
+      item.Answers.forEach((subitem) => {
+        console.log("sub", subitem);
+        if (subitem.selected === true) {
+          count = count + 1;
+          setAnswerCount(count);
+        }
+      });
+    });
+    console.log("the answers count", anscount);
     // console.log("the data", data);
-    console.log("the list value data", listValue);
-    console.log("questions data", questionsData);
-    console.log("the flag value ", flag);
-  }, [eventValue, questionValue]);
+    // console.log("the list value data", listValue);
+    // console.log("questions data", questionsData);
+    // console.log("the answered", count);
+    // console.log("the flag value ", flag);
+    // console.log("answered", answered);
+  }, [eventValue, questionValue, anscount]);
+  const handleSubmitCallback = async () => {
+    const results = await fetch("http://localhost:3001/test", {
+      method: "POST",
+      mode: "no-cors",
+      cache: "no-cache",
+      headers: {
+        Accept: "application/json",
+      },
+      body: JSON.stringify(questionsData),
+    });
+    console.log("the results", results);
+  };
   return (
     <>
       <div className={styles["questions-container"]}>
@@ -64,8 +89,9 @@ function Qna({ data, questionsData }) {
         ))}
       </div>
       <Footer
-        answeredQuestions={answered}
+        answeredQuestions={anscount}
         questionsLength={questionsData.length}
+        submitCallback={handleSubmitCallback}
       />
     </>
   );

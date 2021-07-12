@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Header.module.scss";
 import Image from "next/image";
-import NavContainer from "../src/Components/NavContainer";
-import Description from "../src/Components/Description";
+import dynamic from "next/dynamic";
+const Description = dynamic(() => import("../src/Components/Description"));
 export default function Home() {
   return (
     <div className={styles["container"]}>
@@ -10,7 +10,6 @@ export default function Home() {
         <title>Personality Test</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Description />
     </div>
   );
