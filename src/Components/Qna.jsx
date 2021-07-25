@@ -4,11 +4,11 @@ import styles from "../../styles/Questions.module.scss";
 import { AuthContext } from "../utils/context";
 import Footer from "./Footer";
 function Qna({ data, questionsData }) {
-  const [listValue, setListValue] = useState([]);
   const context = useContext(AuthContext);
   const [eventValue, setEventValue] = useState("");
   const [questionValue, setQuestionValue] = useState(1);
   const [flag, setFlag] = useState(false);
+  const [listValue, setListValue] = useState([]);
   const [anscount, setAnswerCount] = useState(0);
   const [personality, setPersonality] = useState({});
   const router = useRouter();
@@ -25,7 +25,6 @@ function Qna({ data, questionsData }) {
       }
     }).length;
     console.log("the selected count", selectedCount);
-    // console.log("questions value", questionValue);
     questionsData[questionValue - 1].Answers.forEach((item) => {
       if (item.answerId === eventValue && selectedCount === 0) {
         item.selected = true;

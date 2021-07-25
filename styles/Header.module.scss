@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 2rem 4rem 0 4rem;
+  padding: 2rem;
   background-color: rgb(255, 247, 239);
   &_logo {
     display: inline-flex;
@@ -25,4 +25,10 @@
   font-family: "Quasimoda Regular";
   src: local("Quasimoda Regular"),
     url("../src/fonts/Quasimoda-Regular.ttf") format("truetype");
+}
+
+@media screen and (min-width: 768px) {
+  .header_icons {
+    padding: 2rem 4rem 0 4rem;
+  }
 }

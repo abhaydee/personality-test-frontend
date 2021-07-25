@@ -12,7 +12,7 @@ function Footer({ answeredQuestions, questionsLength, submitCallback }) {
           {answeredQuestions} of {questionsLength}
         </p>
         <ProgressBar
-          completed={50}
+          completed={(answeredQuestions / questionsLength) * 100}
           baseBgColor="grey"
           bgColor="rgb(132, 201, 183)"
           isLabelVisible={false}
