@@ -18,3 +18,11 @@
     padding-top: 0.75rem;
   }
 }
+.App {
+  font-family: "Quasimoda Regular", sans-serif !important;
+}
+@font-face {
+  font-family: "Quasimoda Regular";
+  src: local("Quasimoda Regular"),
+    url("../src/fonts/Quasimoda-Regular.ttf") format("truetype");
+}

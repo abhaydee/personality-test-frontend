@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../../styles/Questions.module.scss";
+import { AuthContext } from "../utils/context";
 import Footer from "./Footer";
 function Qna({ data, questionsData }) {
   const [listValue, setListValue] = useState([]);
+  const context = useContext(AuthContext);
   const [eventValue, setEventValue] = useState("");
   const [questionValue, setQuestionValue] = useState(1);
   const [flag, setFlag] = useState(false);
   const [anscount, setAnswerCount] = useState(0);
+  const [personality, setPersonality] = useState({});
+  const router = useRouter();
   const handleChange = (event) => {
     setQuestionValue(event.target.name);
     setEventValue(event.target.value);
@@ -49,16 +54,23 @@ function Qna({ data, questionsData }) {
     // console.log("answered", answered);
   }, [eventValue, questionValue, anscount]);
   const handleSubmitCallback = async () => {
-    const results = await fetch("http://localhost:3001/test", {
+    const requestOptions = {
       method: "POST",
-      mode: "no-cors",
-      cache: "no-cache",
-      headers: {
-        Accept: "application/json",
-      },
-      body: JSON.stringify(questionsData),
-    });
-    console.log("the results", results);
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: questionsData }),
+    };
+    fetch("http://localhost:3001/test", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          router.push("/");
+          setPersonality(data);
+          context.setScore(data);
+        }
+      })
+      .catch((err) => {
+        console.log("the error", err);
+      });
   };
   return (
     <>

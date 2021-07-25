@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../../styles/Description.module.scss";
-
+import { AuthContext } from "../utils/context";
 function Description() {
   const router = useRouter();
+  const { score } = useContext(AuthContext);
+  console.log("the score catch", score);
   const handleClick = () => {
     router.push("/test");
   };
+
   return (
     <div className={styles["description-container"]}>
       <h1>“It’s so incredible to finally be understood.”</h1>
@@ -21,6 +24,17 @@ function Description() {
       >
         <p>Take the test {`->`}</p>
       </button>
+      {score?.introvertScore > score?.extrovertScore ? (
+        <h3 className={styles["description-container_text"]}>
+          Well!! Well !! Well !! Did you expect this? You have turned out to be
+          an Introvert
+        </h3>
+      ) : (
+        <h3 className={styles["description-container_text"]}>
+          Well!! Well !! Well !! Did you expect this? You have turned out to be
+          an Extrovert
+        </h3>
+      )}
     </div>
   );
 }

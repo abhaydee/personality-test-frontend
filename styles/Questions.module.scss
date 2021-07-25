@@ -11,17 +11,20 @@
     width: 2.5rem;
   }
   &_question {
-    font-size: 1.125rem;
+    font-size: 1.5rem;
     font-weight: 100;
     padding-top: 1rem;
     padding-bottom: 1rem;
     text-align: left;
+    font-family: "Quasimoda Regular";
   }
   &_answer {
     &:first-child {
       margin-top: 1rem;
     }
     margin-bottom: 1rem;
+    font-family: "Quasimoda Regular";
+    font-size: 1.25rem;
     // margin-left: 2rem;
   }
 }
