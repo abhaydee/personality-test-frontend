@@ -4,15 +4,11 @@ import dynamic from "next/dynamic";
 const Qna = dynamic(() => import("../src/Components/Qna"));
 
 function test({ questionsData }) {
-
-  const handleResults=()=>{
-    
-  }
   return (
     <div style={{ backgroundColor: "rgb(255, 247, 239)" }}>
       {questionsData.map((data, index) => (
         <div key={index}>
-          <Qna data={data} questionsData={questionsData} handleDataCallback={handleResults}/>
+          <Qna data={data} questionsData={questionsData}/>
         </div>
       ))}
 
