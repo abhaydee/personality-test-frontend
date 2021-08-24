@@ -5,11 +5,30 @@ import { AuthContext } from "../utils/context";
 function Description() {
   const router = useRouter();
   const { score } = useContext(AuthContext);
+  console.log("the score", score);
   console.log("the score catch", score);
   const handleClick = () => {
     router.push("/test");
   };
-
+  const scoreReturns = () => {
+    if (score) {
+      if (score.introvertScore > score.extrovertScore) {
+        return (
+          <h3 className={styles["description-container_text"]}>
+            Well!! Well !! Well !! Did you expect this? You have turned out to
+            be an Introvert
+          </h3>
+        );
+      } else {
+        return (
+          <h3 className={styles["description-container_text"]}>
+            Well!! Well !! Well !! Did you expect this? You have turned out to
+            be an Extrovert
+          </h3>
+        );
+      }
+    }
+  };
   return (
     <div className={styles["description-container"]}>
       <h1>“It’s so incredible to finally be understood.”</h1>
@@ -24,7 +43,7 @@ function Description() {
       >
         <p>Take the test {`->`}</p>
       </button>
-      {score?.introvertScore > score?.extrovertScore ? (
+      {/* {score?.introvertScore > score?.extrovertScore ? (
         <h3 className={styles["description-container_text"]}>
           Well!! Well !! Well !! Did you expect this? You have turned out to be
           an Introvert
@@ -34,7 +53,8 @@ function Description() {
           Well!! Well !! Well !! Did you expect this? You have turned out to be
           an Extrovert
         </h3>
-      )}
+      )} */}
+      {scoreReturns()}
     </div>
   );
 }

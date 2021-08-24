@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState, useEffect, useContext } from "react";
 import styles from "../../styles/Questions.module.scss";
@@ -8,15 +9,12 @@ function Qna({ data, questionsData }) {
   const [eventValue, setEventValue] = useState("");
   const [questionValue, setQuestionValue] = useState(1);
   const [flag, setFlag] = useState(false);
-  const [listValue, setListValue] = useState([]);
   const [anscount, setAnswerCount] = useState(0);
-  const [personality, setPersonality] = useState({});
   const router = useRouter();
   const handleChange = (event) => {
     setQuestionValue(event.target.name);
     setEventValue(event.target.value);
   };
-  console.log("initial data", questionsData);
   let count = 0;
   useEffect(() => {
     const selectedCount = data.Answers.filter((element) => {
@@ -24,7 +22,6 @@ function Qna({ data, questionsData }) {
         return element;
       }
     }).length;
-    console.log("the selected count", selectedCount);
     questionsData[questionValue - 1].Answers.forEach((item) => {
       if (item.answerId === eventValue && selectedCount === 0) {
         item.selected = true;
@@ -32,36 +29,41 @@ function Qna({ data, questionsData }) {
       }
     });
     if (flag === true) {
-      setListValue(questionsData);
       setFlag(false);
     }
     questionsData.forEach((item) => {
       item.Answers.forEach((subitem) => {
-        console.log("sub", subitem);
         if (subitem.selected === true) {
           count = count + 1;
           setAnswerCount(count);
         }
       });
     });
-    console.log("the answers count", anscount);
-    // console.log("the data", data);
-    // console.log("the list value data", listValue);
-    // console.log("questions data", questionsData);
-    // console.log("the answered", count);
-    // console.log("the flag value ", flag);
-    // console.log("answered", answered);
   }, [eventValue, questionValue, anscount]);
   const handleSubmitCallback = async () => {
+    console.log(
+      "-----questions data altered----",
+      JSON.stringify(questionsData)
+    );
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: questionsData }),
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json", //this should be application/json
+      },
+      URL: "http://localhost:3002/test",
+      body: JSON.stringify(questionsData),
     };
-    fetch("http://localhost:3001/test", requestOptions)
-      .then((response) => response.json())
+    axios("http://localhost:3002/test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify(questionsData),
+    })
       .then((data) => {
         if (data) {
+          console.log("backend response", data);
           router.push("/");
           setPersonality(data);
           context.setScore(data);
