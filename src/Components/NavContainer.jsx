@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { navList, ComponentReSize } from "../utils/utils";
 import Image from "next/image";
 import styles from "../../styles/NavContainer.module.scss";
-import Menu from "../../public/menu.png";
 export default function NavContainer() {
   const isMobile = ComponentReSize();
   const [toggleModal, setToggleModal] = useState(false);

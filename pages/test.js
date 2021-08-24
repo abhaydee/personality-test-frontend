@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 const Qna = dynamic(() => import("../src/Components/Qna"));
 
 function test({ questionsData }) {
-  console.log("getting the data from backend", questionsData);
   return (
     <div style={{ backgroundColor: "rgb(255, 247, 239)" }}>
       {questionsData.map((data, index) => (

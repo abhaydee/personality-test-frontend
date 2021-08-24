@@ -5,8 +5,6 @@ import { AuthContext } from "../utils/context";
 function Description() {
   const router = useRouter();
   const { score } = useContext(AuthContext);
-  console.log("the score", score);
-  console.log("the score catch", score);
   const handleClick = () => {
     router.push("/test");
   };

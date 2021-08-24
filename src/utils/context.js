@@ -14,7 +14,7 @@ export const scoreReducer = (state, action) => {
     case "SET_SCORE":
       return {
         ...state,
-        score: action.payload,
+        score: action.payload.data,
       };
     default:
       return state;

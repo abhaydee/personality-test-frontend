@@ -41,19 +41,6 @@ function Qna({ data, questionsData }) {
     });
   }, [eventValue, questionValue, anscount]);
   const handleSubmitCallback = async () => {
-    console.log(
-      "-----questions data altered----",
-      JSON.stringify(questionsData)
-    );
-    const requestOptions = {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json", //this should be application/json
-      },
-      URL: "http://localhost:3002/test",
-      body: JSON.stringify(questionsData),
-    };
     axios("http://localhost:3002/test", {
       method: "POST",
       headers: {
@@ -63,9 +50,7 @@ function Qna({ data, questionsData }) {
     })
       .then((data) => {
         if (data) {
-          console.log("backend response", data);
           router.push("/");
-          setPersonality(data);
           context.setScore(data);
         }
       })
