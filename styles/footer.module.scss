@@ -3,10 +3,10 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 4rem 1rem 4rem;
-  // position: fixed;
-
-  bottom: 0px;
+  position: fixed;
   left: 0px;
+  bottom: 0px;
+  overflow: auto;
   right: 0px;
   &_button {
     border-radius: 2.25rem;

@@ -4,12 +4,11 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "../../styles/Questions.module.scss";
 import { AuthContext } from "../utils/context";
 import Footer from "./Footer";
-function Qna({ data, questionsData }) {
-  const context = useContext(AuthContext);
+function Qna({ data, questionsData,handleDataCallback }) {
+  const {setScore,ansCount,setAnsCount } = useContext(AuthContext);
   const [eventValue, setEventValue] = useState("");
   const [questionValue, setQuestionValue] = useState(1);
   const [flag, setFlag] = useState(false);
-  const [anscount, setAnswerCount] = useState(0);
   const router = useRouter();
   const handleChange = (event) => {
     setQuestionValue(event.target.name);
@@ -35,11 +34,11 @@ function Qna({ data, questionsData }) {
       item.Answers.forEach((subitem) => {
         if (subitem.selected === true) {
           count = count + 1;
-          setAnswerCount(count);
+          setAnsCount(count);
         }
       });
     });
-  }, [eventValue, questionValue, anscount]);
+  }, [eventValue, questionValue, ansCount]);
   const handleSubmitCallback = async () => {
     axios("http://localhost:3002/test", {
       method: "POST",
@@ -51,7 +50,7 @@ function Qna({ data, questionsData }) {
       .then((data) => {
         if (data) {
           router.push("/");
-          context.setScore(data);
+          setScore(data);
         }
       })
       .catch((err) => {
@@ -86,11 +85,11 @@ function Qna({ data, questionsData }) {
           </div>
         ))}
       </div>
-      <Footer
-        answeredQuestions={anscount}
-        questionsLength={questionsData.length}
-        submitCallback={handleSubmitCallback}
-      />
+        <Footer
+          answeredQuestions={ansCount}
+          questionsLength={questionsData.length}
+          submitCallback={handleSubmitCallback}
+        />
     </>
   );
 }
