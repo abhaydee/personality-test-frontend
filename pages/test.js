@@ -17,7 +17,7 @@ function test({ questionsData }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const questionsData = await getQuestionsData(`http://localhost:3002/test`);
+  const questionsData = await getQuestionsData(`https://shielded-taiga-60936.herokuapp.com/test`);
   return {
     props: {
       questionsData,

@@ -40,7 +40,7 @@ function Qna({ data, questionsData,handleDataCallback }) {
     });
   }, [eventValue, questionValue, ansCount]);
   const handleSubmitCallback = async () => {
-    axios("http://localhost:3002/test", {
+    axios("https://shielded-taiga-60936.herokuapp.com/test", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
